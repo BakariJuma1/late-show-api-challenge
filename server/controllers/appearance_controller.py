@@ -2,7 +2,7 @@ from flask import request
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required,get_jwt_identity
 from server.extension import db
-from models import Appearance,Guest,Episode
+from server.models import Appearance,Guest,Episode
 
 class AppearanceList(Resource):
     @jwt_required() 

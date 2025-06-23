@@ -44,7 +44,7 @@ class Login(Resource):
 
         if user and user.check_password(password):
             token = create_access_token(
-                identity=user.id,
+                identity=str(user.id),
                 expires_delta=timedelta(hours=1)
             )
             return {"access_token":token},200

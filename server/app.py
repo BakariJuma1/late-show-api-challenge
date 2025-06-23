@@ -6,6 +6,7 @@ from server.controllers.auth_controller import Register,Login
 from server.controllers.episode_controller import EpisodeList,EpisodeDetail,DeleteEpisode
 from server.controllers.guest_controller import GuestList
 from server.extension import db,migrate,jwt
+from server.controllers.appearance_controller import AppearanceList 
 
 load_dotenv()
 
@@ -33,6 +34,7 @@ def create_app():
     api.add_resource(EpisodeDetail, '/episodes/<int:id>')
     api.add_resource(DeleteEpisode, '/episodes/<int:id>')
     api.add_resource(GuestList, '/guests')
+    api.add_resource(AppearanceList, '/appearances')
 
 
     return app
