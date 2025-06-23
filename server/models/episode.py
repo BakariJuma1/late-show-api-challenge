@@ -1,4 +1,4 @@
-from server.app import db
+from server.extension import db
 
 class Episode(db.Model):
 
@@ -9,4 +9,5 @@ class Episode(db.Model):
     number = db.Column(db.Integer,nullable=False)
 
     # rship
-    appearances = db.relationship('Appearance',backref='episode',cascade='all, delete')
+    appearances = db.relationship('Appearance',back_populates='episode',cascade='all, delete')
+   

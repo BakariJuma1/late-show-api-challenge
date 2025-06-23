@@ -1,15 +1,16 @@
 from flask import Flask
 from dotenv import load_dotenv
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-from flask_jwt_extended import JWTManager
 from .config import Config
+from flask_restful import Api
+from server.controllers.auth_controller import Register,Login
+from server.controllers.episode_controller import EpisodeList,EpisodeDetail,DeleteEpisode
+from server.controllers.guest_controller import GuestList
+from server.extension import db,migrate,jwt
 
 load_dotenv()
-db =SQLAlchemy()
-migrate =Migrate()
 
-jwt =JWTManager()
+
+
 
 
 def create_app():
@@ -20,9 +21,18 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app,db)
     jwt.init_app(app)
+    api = Api(app)
 
     @app.route('/')
     def home():
         return{"message":"App is running"}
+    
+    api.add_resource(Register,'/register')
+    api.add_resource(Login,'/login')
+    api.add_resource(EpisodeList, '/episodes')
+    api.add_resource(EpisodeDetail, '/episodes/<int:id>')
+    api.add_resource(DeleteEpisode, '/episodes/<int:id>')
+    api.add_resource(GuestList, '/guests')
+
 
     return app
