@@ -3,7 +3,7 @@ from server.models.user import User
 from server.extension import db
 from flask import request
 from flask_jwt_extended import create_access_token
-from datetime import datetime
+from datetime import datetime,timedelta
 
 class Register(Resource):
     def post(self):
@@ -45,8 +45,8 @@ class Login(Resource):
         if user and user.check_password(password):
             token = create_access_token(
                 identity=user.id,
-                expires_delta=datetime.timedelta(hours=1)
+                expires_delta=timedelta(hours=1)
             )
-            return {"access_token":"token"},200
+            return {"access_token":token},200
         
         return {"error":"Invalid credentials"}
