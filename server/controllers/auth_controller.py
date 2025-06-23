@@ -40,7 +40,7 @@ class Login(Resource):
         username= data['username']
         password = data['password']
 
-        user = User.query.filter_by(username=username)
+        user = User.query.filter_by(username=username).first()
 
         if user and user.check_password(password):
             token = create_access_token(
