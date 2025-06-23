@@ -9,7 +9,7 @@ class Register(Resource):
     def post(self):
         
         data = request.get_json()
-        if not data or data.get('username') or not data.get('password'):
+        if not data or not data.get('username') or not data.get('password'):
             return {"Error":"Username and password are required"},400
         
         # extract values from data dict and store in this variables
@@ -34,7 +34,7 @@ class Login(Resource):
     def post(self):
 
         data = request.get_json()
-        if not data or data.get('username') or not data.get('password'):
+        if not data or not data.get('username') or not data.get('password'):
             return {"Error":"Username and password are required"}
         
         username= data['username']
