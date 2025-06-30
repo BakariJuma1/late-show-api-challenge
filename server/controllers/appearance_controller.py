@@ -22,7 +22,7 @@ class AppearanceList(Resource):
             return {"error":"Guest not found"},404
         
         if not Episode.query.get(episode_id):
-            return {"error":"Episode not found"}
+            return {"error":"Episode not found"},404
         
         try:
             new_appearance = Appearance(

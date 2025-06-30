@@ -16,8 +16,8 @@ class DeleteEpisode(Resource):
         db.session.delete(episode)
         db.session.commit()
 
-        return {"message":f"Episode{id} deleted succesfully"},200
-    
+        return {"message":f"Episode{id} deleted succesfully"},204
+
 class EpisodeList(Resource):
     def get(self):
         episodes = Episode.query.all()
