@@ -1,6 +1,6 @@
 from flask import Flask
 from dotenv import load_dotenv
-from .config import Config
+from server.config import Config
 from flask_restful import Api
 from server.controllers.auth_controller import Register,Login
 from server.controllers.episode_controller import EpisodeList,EpisodeDetail,DeleteEpisode
